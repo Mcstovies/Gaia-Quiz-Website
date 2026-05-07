@@ -29,4 +29,8 @@ let currentQuestion = 0;
 // HTML ELEMENTS
 // ===============================================================
 
-
+const startButton = document.getElementById("startBtn");
+const quizContainer = document.getElementById("quiz");
+const questionText = document.getElementById("question");
+const optionButtons = document.querySelectorAll(".option-btn");
+const resultText = document.getElementById("result");
