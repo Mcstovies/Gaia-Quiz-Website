@@ -34,3 +34,17 @@ const quizContainer = document.getElementById("quiz");
 const questionText = document.getElementById("question");
 const optionButtons = document.querySelectorAll(".option-btn");
 const resultText = document.getElementById("result");
+
+// ===============================
+// START BUTTON
+// ===============================
+
+startButton.addEventListener("click", startQuiz);
+
+function startQuiz() {
+  startButton.style.display = "none";
+  quizContainer.style.display = "block";
+
+  showQuestion();
+}
+
