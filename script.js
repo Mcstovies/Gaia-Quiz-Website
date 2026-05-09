@@ -48,3 +48,31 @@ function startQuiz() {
   showQuestion();
 }
 
+// ===============================
+// SHOW QUESTION
+// ===============================
+
+function showQuestion() {
+
+  // Check if quiz finished
+  if (currentQuestion >= questions.length) {
+    showResults();
+    return;
+  }
+
+  // Display question
+  questionText.innerHTML =
+    "Question " + (currentQuestion + 1) + "<br>" +
+    questions[currentQuestion];
+
+  // Display options
+  optionButtons.forEach((button, index) => {
+    button.textContent = options[currentQuestion][index];
+
+    // When user clicks an answer
+    button.onclick = function () {
+      checkAnswer(index + 1);
+    };
+  });
+}
+
