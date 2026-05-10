@@ -76,3 +76,23 @@ function showQuestion() {
   });
 }
 
+// ===============================
+// CHECK ANSWER
+// ===============================
+
+function checkAnswer(userAnswer) {
+
+  if (userAnswer === correctAnswers[currentQuestion]) {
+    alert("Correct! Well done ");
+    score++;
+  } else {
+    alert(
+      "Wrong answer \nCorrect answer was option " +
+      correctAnswers[currentQuestion]
+    );
+  }
+
+  currentQuestion++;
+
+  showQuestion();
+}
