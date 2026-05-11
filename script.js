@@ -82,13 +82,13 @@ function showQuestion() {
 
 function checkAnswer(userAnswer) {
 
-  if (userAnswer === correctAnswers[currentQuestion]) {
+  if (userAnswer === answers[currentQuestion]) {
     alert("Correct! Well done ");
     score++;
   } else {
     alert(
       "Wrong answer \nCorrect answer was option " +
-      correctAnswers[currentQuestion]
+      answers[currentQuestion]
     );
   }
 
@@ -96,7 +96,6 @@ function checkAnswer(userAnswer) {
 
   showQuestion();
 }
-
 
 // ===============================
 // FINAL RESULTS
@@ -114,7 +113,7 @@ function showResults() {
 
   // CHECK PASS (OVER 50%)
   if (score >= 3) {
-    message += "You passed! Great job 🌍";
+    message += "You passed! Great job !";
   } else {
     message += "You did not pass. Try again!";
   }
