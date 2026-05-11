@@ -96,3 +96,28 @@ function checkAnswer(userAnswer) {
 
   showQuestion();
 }
+
+
+// ===============================
+// FINAL RESULTS
+// ===============================
+
+function showResults() {
+
+  quizContainer.style.display = "none";
+
+  resultText.style.display = "block";
+
+  let message =
+    "Quiz Complete!<br>" +
+    "You got " + score + " out of 6 correct.<br><br>";
+
+  // CHECK PASS (OVER 50%)
+  if (score >= 3) {
+    message += "You passed! Great job 🌍";
+  } else {
+    message += "You did not pass. Try again!";
+  }
+
+  resultText.innerHTML = message;
+}
