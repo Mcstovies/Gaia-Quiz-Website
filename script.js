@@ -11,6 +11,7 @@ const questions = [
     "What helps reduce pollution?",
 ];
 
+// Arrays that store answer options
 const options = [
   ["Oxygen", "Carbon Dioxide", "Nitrogen"],
   ["Plastic", "Glass", "Both"],
@@ -20,8 +21,10 @@ const options = [
   ["Cycling", "Driving more", "Burning fuel"]
 ];
 
+// Arrays that store correct answer
 const answers = [2,3,1,1,1,1];
 
+// Variables to track the score and question number
 let score = 0;
 let currentQuestion = 0;
 
@@ -42,6 +45,8 @@ const resetButton = document.getElementById("resetBtn");
 // ===============================
 
 startButton.addEventListener("click", startQuiz);
+
+// Function to start the quiz, hide the start button, and show quiz container
 function startQuiz() {
   startButton.style.display = "none";
   quizContainer.style.display = "block";
@@ -103,14 +108,15 @@ function checkAnswer(userAnswer) {
     score++;
     feedbackArea.innerHTML = '<span class="feedback-symbol">✓</span><span>Correct! Well done!</span>';
     feedbackArea.classList.add("show", "correct");
-    // Highlight correct answer
+
+    // Highlight correct answer and show wrong symbol
   } else {
     const correctOption = answers[currentQuestion];
     feedbackArea.innerHTML = `<span class="feedback-symbol">✕</span><span>Wrong! Correct answer was option ${correctOption}</span>`;
     feedbackArea.classList.add("show", "wrong");
   }
 
-  // Move to next question after 2 seconds
+  // Move to next question after 1 seconds
   setTimeout(() => {
     currentQuestion++;
     showQuestion();
