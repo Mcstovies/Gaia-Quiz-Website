@@ -34,6 +34,10 @@ const quizContainer = document.getElementById("quiz");
 const questionText = document.getElementById("question");
 const optionButtons = document.querySelectorAll(".option-btn");
 const resultText = document.getElementById("result");
+const feedbackArea = document.getElementById("feedback");
+const resetButton = document.getElementById("resetBtn");
+
+let answeredQuestion = false;
 
 // ===============================
 // START BUTTON
@@ -41,17 +45,14 @@ const resultText = document.getElementById("result");
 
 startButton.addEventListener("click", startQuiz);
 
-function startQuiz() {
-  startButton.style.display = "none";
-  quizContainer.style.display = "block";
 
-  showQuestion();
-}
 
 // ===============================
 // SHOW QUESTION
 // ===============================
 
+
+  // Displays current question and options, and sets up click handlers for answers
 function showQuestion() {
 
   // Check if quiz finished
@@ -59,6 +60,11 @@ function showQuestion() {
     showResults();
     return;
   }
+
+  // Clear feedback
+  feedbackArea.textContent = "";
+  feedbackArea.classList.remove("show", "correct", "wrong");
+  answeredQuestion = false;
 
   // Display question
   questionText.innerHTML =
@@ -68,10 +74,14 @@ function showQuestion() {
   // Display options
   optionButtons.forEach((button, index) => {
     button.textContent = options[currentQuestion][index];
+    button.disabled = false;
+    button.style.opacity = "1";
 
     // When user clicks an answer
     button.onclick = function () {
-      checkAnswer(index + 1);
+      if (!answeredQuestion) {
+        checkAnswer(index + 1);
+      }
     };
   });
 }
@@ -81,20 +91,31 @@ function showQuestion() {
 // ===============================
 
 function checkAnswer(userAnswer) {
+  answeredQuestion = true;
 
+  // Disable all buttons
+  optionButtons.forEach(button => {
+    button.disabled = true;
+    button.style.opacity = "0.5";
+  });
+
+  // Check if answer is correct
   if (userAnswer === answers[currentQuestion]) {
-    alert("Correct! Well done ");
     score++;
+    feedbackArea.innerHTML = '<span class="feedback-symbol">✓</span><span>Correct! Well done!</span>';
+    feedbackArea.classList.add("show", "correct");
+    // Highlight correct answer
   } else {
-    alert(
-      "Wrong answer \nCorrect answer was option " +
-      answers[currentQuestion]
-    );
+    const correctOption = answers[currentQuestion];
+    feedbackArea.innerHTML = `<span class="feedback-symbol">✕</span><span>Wrong! Correct answer was option ${correctOption}</span>`;
+    feedbackArea.classList.add("show", "wrong");
   }
 
-  currentQuestion++;
-
-  showQuestion();
+  // Move to next question after 2 seconds
+  setTimeout(() => {
+    currentQuestion++;
+    showQuestion();
+  }, 1000);
 }
 
 // ===============================
@@ -106,6 +127,7 @@ function showResults() {
   quizContainer.style.display = "none";
 
   resultText.style.display = "block";
+  resetButton.style.display = "block";
 
   let message =
     "Quiz Complete!<br>" +
@@ -119,4 +141,42 @@ function showResults() {
   }
 
   resultText.innerHTML = message;
+}
+
+
+// ===============================
+// RESET BUTTON
+// ===============================
+
+resetButton.addEventListener("click", resetQuiz);
+
+function resetQuiz() {
+  // Reset quiz state
+  score = 0;
+  currentQuestion = 0;
+  answeredQuestion = false;
+
+  // Hide results and reset button
+  resultText.style.display = "none";
+  resetButton.style.display = "none";
+
+  // Show start button
+  startButton.style.display = "block";
+
+  // Clear feedback
+  feedbackArea.textContent = "";
+  feedbackArea.classList.remove("show", "correct", "wrong");
+
+  // Re-enable option buttons
+  optionButtons.forEach(button => {
+    button.disabled = false;
+    button.style.opacity = "1";
+  });
+}
+
+function startQuiz() {
+  startButton.style.display = "none";
+  quizContainer.style.display = "block";
+
+  showQuestion();
 }

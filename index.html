@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Gaia Quiz Website</title>
 </head>
 <body>
@@ -12,8 +13,17 @@
 
     <h1>GAIA Environmental Quiz</h1>
 
+
+    <!--Image on start screen-->
+      <div class="image-placeholder">
+          <img src="img/earthglobe.png" alt="Earth Globe" class="earth-logo">
+      </div>
+
     <!-- START BUTTON -->
     <button id="startBtn">START QUIZ</button>
+
+    <!-- RESET BUTTON -->
+    <button id="resetBtn" style="display:none;">TAKE QUIZ AGAIN</button>
 
     <!-- QUIZ AREA -->
     <div id="quiz" style="display:none;">
@@ -24,10 +34,16 @@
       <button class="option-btn"></button>
       <button class="option-btn"></button>
 
+      <!-- FEEDBACK AREA -->
+      <div id="feedback" class="feedback"></div>
+
     </div>
 
     <!-- RESULT AREA -->
     <div id="result" style="display:none;"></div>
+
+    <!-- RESET BUTTON -->
+    <button id="resetBtn" style="display:none;">TAKE QUIZ AGAIN</button>
 
   </div>
   <script src="script.js"></script>
