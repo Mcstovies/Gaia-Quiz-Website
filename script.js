@@ -37,8 +37,6 @@ const resultText = document.getElementById("result");
 const feedbackArea = document.getElementById("feedback");
 const resetButton = document.getElementById("resetBtn");
 
-let answeredQuestion = false;
-
 // ===============================
 // START BUTTON
 // ===============================
@@ -69,7 +67,6 @@ function showQuestion() {
   // Clear feedback
   feedbackArea.textContent = "";
   feedbackArea.classList.remove("show", "correct", "wrong");
-  answeredQuestion = false;
 
   // Display question
   questionText.innerHTML =
@@ -84,9 +81,7 @@ function showQuestion() {
 
     // When user clicks an answer
     button.onclick = function () {
-      if (!answeredQuestion) {
-        checkAnswer(index + 1);
-      }
+      checkAnswer(index + 1);
     };
   });
 }
@@ -96,7 +91,6 @@ function showQuestion() {
 // ===============================
 
 function checkAnswer(userAnswer) {
-  answeredQuestion = true;
 
   // Disable all buttons
   optionButtons.forEach(button => {
@@ -160,7 +154,6 @@ function resetQuiz() {
   // Reset quiz state
   score = 0;
   currentQuestion = 0;
-  answeredQuestion = false;
 
   // Hide results and reset button
   resultText.style.display = "none";
