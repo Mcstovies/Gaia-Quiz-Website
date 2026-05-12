@@ -128,6 +128,13 @@ h2 {
   transform: translateY(-1px);
 }
 
+
+/* BUTTON WRAPPER SPACING */
+#startBtn,
+#resetBtn {
+  margin-top: 20px;
+}
+
 /* ===================================
    QUIZ OPTIONS
    =================================== */

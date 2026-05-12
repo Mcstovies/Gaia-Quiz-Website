@@ -44,7 +44,12 @@ let answeredQuestion = false;
 // ===============================
 
 startButton.addEventListener("click", startQuiz);
+function startQuiz() {
+  startButton.style.display = "none";
+  quizContainer.style.display = "block";
 
+  showQuestion();
+}
 
 
 // ===============================
@@ -151,6 +156,7 @@ function showResults() {
 resetButton.addEventListener("click", resetQuiz);
 
 function resetQuiz() {
+
   // Reset quiz state
   score = 0;
   currentQuestion = 0;
@@ -160,23 +166,19 @@ function resetQuiz() {
   resultText.style.display = "none";
   resetButton.style.display = "none";
 
-  // Show start button
-  startButton.style.display = "block";
+  // Hide quiz area
+  quizContainer.style.display = "none";
+
+  // Show start button again
+  startButton.style.display = "inline-block";
 
   // Clear feedback
   feedbackArea.textContent = "";
   feedbackArea.classList.remove("show", "correct", "wrong");
 
-  // Re-enable option buttons
+  // Re-enable buttons
   optionButtons.forEach(button => {
     button.disabled = false;
     button.style.opacity = "1";
   });
-}
-
-function startQuiz() {
-  startButton.style.display = "none";
-  quizContainer.style.display = "block";
-
-  showQuestion();
 }
